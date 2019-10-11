@@ -1,0 +1,9 @@
+d065c78c2847ff89dc18e0950e26ddab  lib/systemd/system/systemd-zram.service
+6d152c973999ba6bc176d2c29df5d614  usr/bin/systemd-zram
+c9c5c94fc03f74e015fbc21f550c4b0d  usr/share/doc/systemd-zram/AUTHORS
+b58706b50aa43baa57f8eb578dc736a8  usr/share/doc/systemd-zram/ChangeLog
+051668e1857a4715d0af928b1312cb88  usr/share/doc/systemd-zram/README.md
+9ba791e67111e285499aa0d76d0290a5  usr/share/doc/systemd-zram/THANKS
+9040134e3b2e78b146c797740142dfcf  usr/share/doc/systemd-zram/changelog.gz
+7702f203b58979ebbc31bfaeb44f219c  usr/share/licenses/systemd-zram/COPYING
+a74c1d0f5e468d188197f7500e0b06b7  usr/share/man/man1/systemd-zram.1.gz

@@ -1,0 +1,14 @@
+[Unit]
+Description=zRAM block devices swapping
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemd-zram start
+ExecStop=/usr/bin/systemd-zram stop
+RemainAfterExit=yes
+Environment=COMP_ALGORITHM=lz4
+Environment=FRACTION=90
+Environment=MIN_2X=yes
+
+[Install]
+WantedBy=multi-user.target
