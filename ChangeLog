@@ -1,3 +1,25 @@
+systemd-zram (1.1a) unstable; urgency=medium
+
+  * Release 1.1a.
+
+    - when performing an uninstall, stop and disable zram
+
+ -- Manuel Domínguez López <mdomlop@gmail.com>  Fri, 11 Oct 2019 10:16:07 +0100
+
+systemd-zram (1.1) unstable; urgency=medium
+
+  * Release 1.1.
+
+    - Added an environment variable that can be set in the
+      systemd-zram.service, MIN_2X
+    - MIN_2X=yes will allow the swap space for zram to be 2X the size of the
+      physical memory space if physical memory is less than 2GB.
+      Using the compression algorithm of lz4 is the author's recommendation
+      for this to improve compression.
+      COMP_ALGORITHM=lz4
+
+  -- Robert Eustace Novak <sailnfool@gmail.com>  Sun, 13 Oct 2019 19:06:00 -0700
+
 systemd-zram (1.0) unstable; urgency=medium
 
   * Release 1.0.
