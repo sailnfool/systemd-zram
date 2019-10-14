@@ -9,6 +9,6 @@ AUTHORS
 
     - Manuel Domínguez López <mdomlop@gmail.com>
 
-* Modified zram algorithm
+* Modified zram algorithm for small memory systems
 
     - Robert Eustace Novak <sailnfool@gmail.com>
