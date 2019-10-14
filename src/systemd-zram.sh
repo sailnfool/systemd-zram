@@ -10,14 +10,14 @@ EXECUTABLE_NAME='systemd-zram'
 PROGRAM_NAME='Systemd zRAM'
 DESCRIPTION='Use compressed RAM as in-memory swap'
 #VERSION='1.0'
-VERSION='1.1'
+VERSION='1.1a'
 #AUTHOR='Manuel Domínguez López'  # See AUTHORS file
 AUTHOR='Robert E. Novak'  # See AUTHORS file
 #MAIL='mdomlop@gmail.com'
 MAIL='sailnfool@gmail.com'
 LICENSE='GPLv3+'  # Read LICENSE file.
 
-# You can change the compression algorithm, fraction number and min_2gb by
+# You can change the compression algorithm, fraction number and min_2x by
 # editing the systemd service.
 DEF_FRACTION=75
 DEF_COMP_ALGORITHM='lz4'
