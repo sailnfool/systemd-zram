@@ -39,6 +39,8 @@ arch_install: $(DOCS)
 
 
 uninstall:
+	systemctl stop $(EXECUTABLE_NAME)
+	systemctl disable $(EXECUTABLE_NAME)
 	rm -f $(PREFIX)/bin/$(EXECUTABLE_NAME)
 	rm -f /lib/systemd/system/$(EXECUTABLE_NAME).service
 	rm -rf $(PREFIX)/share/licenses/$(EXECUTABLE_NAME)/
