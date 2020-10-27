@@ -15,6 +15,7 @@ default: man
 
 man: $(MAN)
 %.gz: %.rst
+	if [ ! -f /usr/bin/rst2man ] ; then sudo apt-get install python3-docutils; fi
 	rst2man $^ | gzip -c > $@
 man_clean:
 	rm -f $(MAN)
