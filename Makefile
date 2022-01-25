@@ -24,6 +24,7 @@ man_clean:
 
 install: $(DOCS)
 	if [ $(OSNAME).$(ARCHNAME) == "ubuntu.aarch64" ] ; sudo sed -i -e 's/$/ zswap.enable=1/' /boot/firmware/cmdline.txt; fi
+	sudo apt install linux-modules-extra-raspi
 	install -d -m 755 "$(DESTDIR)$(PREFIX)/share/doc/$(EXECUTABLE_NAME)"
 	install -Dm 644 $^ "$(DESTDIR)$(PREFIX)/share/doc/$(EXECUTABLE_NAME)"
 	install -Dm 755 src/$(EXECUTABLE_NAME).sh "$(DESTDIR)$(PREFIX)/bin/$(EXECUTABLE_NAME)"
