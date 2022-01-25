@@ -17,6 +17,15 @@ moving swap space off of the flash memory and into RAM.
 See also:
 https://www.kernel.org/doc/Documentation/blockdev/zram.txt
 
+*** Contrary to the above documents - the zram device is NOT
+automatically provided in all kernels.  This version of systemd-zram
+addresses this issue:
+
+*** With the Ubuntu 21.10 release, Ubuntu removed the zram module
+and it must be installed with linux-modules-extra-raspi.  There was
+also a recent article in "Make Use of" pointed out that there is also
+a way to enable the swapping feature on a Raspberry PI by adding
+the line "zswap.enable=1" to the end of /boot/firmware/cmdline.txt
 This program provides a systemd service to automatically load and configure
 such module at system boot.
 
