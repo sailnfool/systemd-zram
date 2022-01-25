@@ -4,7 +4,7 @@ DESTDIR=
 EXECUTABLE_NAME := $(shell grep ^EXECUTABLE_NAME src/systemd-zram.sh | cut -d\' -f2)
 VERSION := $(shell grep ^VERSION src/$(EXECUTABLE_NAME).sh | cut -d\' -f2)
 LICENSE := $(shell grep ^LICENSE src/$(EXECUTABLE_NAME).sh | cut -d\' -f2)
-OSNAME := $(shell sed -e '/^ID=/s/^ID=\(.*\)$/\1/' < /etc/os-release)
+OSNAME := $(shell sed -e '/^ID=/s/^ID=\(.*\)\\\$/\1/' < /etc/os-release)
 ARCHNAME := $(shell uname -m)
 
 DOCS= ChangeLog README.md AUTHORS THANKS
@@ -23,8 +23,12 @@ man_clean:
 	rm -f $(MAN)
 
 install: $(DOCS)
-	if [ $(OSNAME).$(ARCHNAME) == "ubuntu.aarch64" ] ; sudo sed -i -e 's/$/ zswap.enable=1/' /boot/firmware/cmdline.txt; fi
-	sudo apt install linux-modules-extra-raspi
+install:
+	cd scripts
+	make uninstall luninstall install linstall clean
+	cd ..
+	if [ $(OSNAME).$(ARCHNAME) == "ubuntu.aarch64" ] ; then sudo bash $(HOME)/github/systemd-zram/bin/add_zram_firmware; fi
+	if [ $(OSNAME).$(ARCHNAME) == "ubuntu.aarch64" ] ; then sudo apt install linux-modules-extra-raspi; fi
 	install -d -m 755 "$(DESTDIR)$(PREFIX)/share/doc/$(EXECUTABLE_NAME)"
 	install -Dm 644 $^ "$(DESTDIR)$(PREFIX)/share/doc/$(EXECUTABLE_NAME)"
 	install -Dm 755 src/$(EXECUTABLE_NAME).sh "$(DESTDIR)$(PREFIX)/bin/$(EXECUTABLE_NAME)"
@@ -44,6 +48,9 @@ arch_install: $(DOCS)
 
 
 uninstall:
+	cd scripts
+	make uninstall luninstall
+	cd ..
 	systemctl stop $(EXECUTABLE_NAME)
 	systemctl disable $(EXECUTABLE_NAME)
 	rm -f $(PREFIX)/bin/$(EXECUTABLE_NAME)
