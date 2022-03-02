@@ -1,3 +1,4 @@
+SHELL=/bin/bash
 PREFIX=/usr
 DESTDIR=
 
@@ -23,8 +24,8 @@ man_clean:
 	rm -f $(MAN)
 
 install: $(DOCS)
-	if [ $(OSNAME).$(ARCHNAME) == "ubuntu.aarch64" ] ; then if [ ! grep "zswap.enable" /boot/cmdline.txt ] ; then sudo echo 'swap.enable=1'i >> /boot/;fi;fi /boot/firmware/cmdline.txt; fi
-	sudo apt install linux-modules-extra-raspi
+	#if [ $(OSNAME).$(ARCHNAME) == "ubuntu.aarch64" ] ; then if [ ! grep "zswap.enable" /boot/cmdline.txt ] ; then sudo echo 'swap.enable=1'i >> /boot/;fi;fi ; fi
+	if [ $(OSNAME).$(ARCHNAME) == "ubuntu.aarch64" ] ; then sudo apt install linux-modules-extra-raspi;fi
 	install -d -m 755 "$(DESTDIR)$(PREFIX)/share/doc/$(EXECUTABLE_NAME)"
 	install -Dm 644 $^ "$(DESTDIR)$(PREFIX)/share/doc/$(EXECUTABLE_NAME)"
 	install -Dm 755 src/$(EXECUTABLE_NAME).sh "$(DESTDIR)$(PREFIX)/bin/$(EXECUTABLE_NAME)"
