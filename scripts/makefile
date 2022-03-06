@@ -2,7 +2,7 @@ SHELL=/bin/bash
 .sh:
 	@rm -f $@
 	cp $< $@
-INSTALL = add_zram_firmware
+INSTALL = add_zram_firmware clearswap
 LINSTALL = add_zram_firmware
 
 EXECDIR := $(HOME)/bin
@@ -15,8 +15,8 @@ install: $(INSTALL)
 	install -g $(USER) -o $(USER) -C $? $(EXECDIR)
 	rm -f $?
 linstall: $(LINSTALL) 
-	mkdir -p $(SEXECDIR)
-	install -g root -o root  -C $? $(SEXECDIR)
+	mkdir -p $(LEXECDIR)
+	install -g root -o root  -C $? $(LEXECDIR)
 clean: 
 	@for execfile in $(INSTALL) ; do \
 		echo rm -f $$execfile; \
