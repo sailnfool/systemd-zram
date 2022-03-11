@@ -33,6 +33,8 @@ install: $(DOCS)
 	install -Dm 644 LICENSE "$(DESTDIR)$(PREFIX)/share/licenses/$(EXECUTABLE_NAME)/COPYING"
 	install -Dm 644 src/$(EXECUTABLE_NAME).service "$(DESTDIR)/lib/systemd/system/$(EXECUTABLE_NAME).service"
 	install -Dm 644 man/$(EXECUTABLE_NAME).1.gz $(DESTDIR)$(PREFIX)/share/man/man1/$(EXECUTABLE_NAME).1.gz
+	cp /usr/share/systemd/tmp.mount /etc/systemd/system/
+	systemctl enable tmp.mount
 
 arch_install: $(DOCS)
 	install -d -m 755 "$(DESTDIR)$(PREFIX)/share/doc/$(EXECUTABLE_NAME)"
@@ -42,6 +44,7 @@ arch_install: $(DOCS)
 	install -Dm 644 LICENSE "$(DESTDIR)$(PREFIX)/share/licenses/$(EXECUTABLE_NAME)/COPYING"
 	install -Dm 644 src/$(EXECUTABLE_NAME).service "$(DESTDIR)$(PREFIX)/lib/systemd/system/$(EXECUTABLE_NAME).service"
 	install -Dm 644 man/$(EXECUTABLE_NAME).1.gz $(DESTDIR)$(PREFIX)/share/man/man1/$(EXECUTABLE_NAME).1.gz
+	systemctl enable tmp.mount
 
 
 uninstall:
@@ -52,6 +55,8 @@ uninstall:
 	rm -rf $(PREFIX)/share/licenses/$(EXECUTABLE_NAME)/
 	rm -rf $(PREFIX)/share/doc/$(EXECUTABLE_NAME)/
 	rm -f $(PREFIX)/share/man/man1/$(EXECUTABLE_NAME).1.gz
+	systemctl stop tmp.mount
+	systemctl disable tmp.mount
 
 clean: arch_clean debian_clean man_clean
 
